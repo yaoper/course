@@ -59,7 +59,7 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed update history.
 
 ### Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yaoper/course&type=Date)](https://star-history.com/#yaoper/course&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=yaoper/course&type=Date)](https://star-history.com/#yaoper/course&type=Date)
 
 ### License
 
