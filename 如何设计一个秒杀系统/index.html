@@ -1,20 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover" />
     <meta name="format-detection" content="telephone=no" />
     <title>如何设计一个秒杀系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #060921;
+            color: #fff;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00D9F5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #00F5A0;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(120deg, #00F5A0, #00D9F5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .article-link {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .article-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 217, 245, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bg-gradient1 {
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 245, 160, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 20s infinite alternate;
+        }
+
+        .bg-gradient2 {
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 217, 245, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 15s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 50px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .back-link {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            .header {
+                margin-bottom: 2rem;
+            }
+
+            .article-list {
+                grid-template-columns: 1fr;
+            }
+
+            .article-link {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<a href="./180925-开篇词 _ 秒杀系统架构设计都有哪些关键点？.html">180925-开篇词 _ 秒杀系统架构设计都有哪些关键点？</a><br>
-<a href="./181001-01 _ 设计秒杀系统时应该注意的5个架构原则.html">181001-01 _ 设计秒杀系统时应该注意的5个架构原则</a><br>
-<a href="./181002-02 _ 如何才能做好动静分离？有哪些方案可选？.html">181002-02 _ 如何才能做好动静分离？有哪些方案可选？</a><br>
-<a href="./181003-03 _ 二八原则：有针对性地处理好系统的“热点数据”.html">181003-03 _ 二八原则：有针对性地处理好系统的“热点数据”</a><br>
-<a href="./181004-04 _ 流量削峰这事应该怎么做？.html">181004-04 _ 流量削峰这事应该怎么做？</a><br>
-<a href="./181005-05 _ 影响性能的因素有哪些？又该如何提高系统的性能？.html">181005-05 _ 影响性能的因素有哪些？又该如何提高系统的性能？</a><br>
-<a href="./181006-06 _ 秒杀系统“减库存”设计的核心逻辑.html">181006-06 _ 秒杀系统“减库存”设计的核心逻辑</a><br>
-<a href="./181007-07 _ 准备Plan B：如何设计兜底方案_.html">181007-07 _ 准备Plan B：如何设计兜底方案_</a><br>
+    <div class="bg-animation">
+        <div class="bg-gradient1"></div>
+        <div class="bg-gradient2"></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-link">返回首页</a>
+            <h1>如何设计一个秒杀系统</h1>
+        </div>
+        <ul class="article-list">
+            <li><a href="./180925-开篇词 _ 秒杀系统架构设计都有哪些关键点？.html" class="article-link">开篇词 ｜ 秒杀系统架构设计都有哪些关键点？</a></li>
+            <li><a href="./181001-01 _ 设计秒杀系统时应该注意的5个架构原则.html" class="article-link">01 ｜ 设计秒杀系统时应该注意的5个架构原则</a></li>
+            <li><a href="./181002-02 _ 如何才能做好动静分离？有哪些方案可选？.html" class="article-link">02 ｜ 如何才能做好动静分离？有哪些方案可选？</a></li>
+            <li><a href="./181003-03 _ 二八原则：有针对性地处理好系统的“热点数据”.html" class="article-link">03 ｜ 二八原则：有针对性地处理好系统的“热点数据”</a></li>
+            <li><a href="./181004-04 _ 流量削峰这事应该怎么做？.html" class="article-link">04 ｜ 流量削峰这事应该怎么做？</a></li>
+            <li><a href="./181005-05 _ 影响性能的因素有哪些？又该如何提高系统的性能？.html" class="article-link">05 ｜ 影响性能的因素有哪些？又该如何提高系统的性能？</a></li>
+            <li><a href="./181006-06 _ 秒杀系统“减库存”设计的核心逻辑.html" class="article-link">06 ｜ 秒杀系统“减库存”设计的核心逻辑</a></li>
+            <li><a href="./181007-07 _ 准备Plan B：如何设计兜底方案_.html" class="article-link">07 ｜ 准备Plan B：如何设计兜底方案</a></li>
+        </ul>
+    </div>
 </body>
 </html>
 

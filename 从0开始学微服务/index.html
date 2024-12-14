@@ -1,51 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover" />
     <meta name="format-detection" content="telephone=no" />
     <title>从0开始学微服务</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #060921;
+            color: #fff;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00D9F5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #00F5A0;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(120deg, #00F5A0, #00D9F5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .article-link {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .article-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 217, 245, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bg-gradient1 {
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 245, 160, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 20s infinite alternate;
+        }
+
+        .bg-gradient2 {
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 217, 245, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 15s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 50px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .back-link {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            .header {
+                margin-bottom: 2rem;
+            }
+
+            .article-list {
+                grid-template-columns: 1fr;
+            }
+
+            .article-link {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<a href="./01讲到底什么是微服务？.html">01讲到底什么是微服务？</a><br>
-<a href="./02讲从单体应用走向服务化.html">02讲从单体应用走向服务化</a><br>
-<a href="./03讲初探微服务架构.html">03讲初探微服务架构</a><br>
-<a href="./04讲如何发布和引用服务？.html">04讲如何发布和引用服务？</a><br>
-<a href="./05讲如何注册和发现服务？.html">05讲如何注册和发现服务？</a><br>
-<a href="./06讲如何实现RPC远程服务调用？.html">06讲如何实现RPC远程服务调用？</a><br>
-<a href="./07讲如何监控微服务调用？.html">07讲如何监控微服务调用？</a><br>
-<a href="./08讲如何追踪微服务调用？.html">08讲如何追踪微服务调用？</a><br>
-<a href="./09讲微服务治理的手段有哪些？.html">09讲微服务治理的手段有哪些？</a><br>
-<a href="./10讲Dubbo框架里的微服务组件.html">10讲Dubbo框架里的微服务组件</a><br>
-<a href="./11讲服务发布和引用的实践.html">11讲服务发布和引用的实践</a><br>
-<a href="./12讲如何将注册中心落地？.html">12讲如何将注册中心落地？</a><br>
-<a href="./13讲开源服务注册中心如何选型？.html">13讲开源服务注册中心如何选型？</a><br>
-<a href="./14讲开源RPC框架如何选型？.html">14讲开源RPC框架如何选型？</a><br>
-<a href="./15讲如何搭建一个可靠的监控系统？.html">15讲如何搭建一个可靠的监控系统？</a><br>
-<a href="./16讲如何搭建一套适合你的服务追踪系统？.html">16讲如何搭建一套适合你的服务追踪系统？</a><br>
-<a href="./17讲如何识别服务节点是否存活？.html">17讲如何识别服务节点是否存活？</a><br>
-<a href="./18讲如何使用负载均衡算法？.html">18讲如何使用负载均衡算法？</a><br>
-<a href="./19讲如何使用服务路由？.html">19讲如何使用服务路由？</a><br>
-<a href="./20讲服务端出现故障时该如何应对？.html">20讲服务端出现故障时该如何应对？</a><br>
-<a href="./21讲服务调用失败时有哪些处理手段？.html">21讲服务调用失败时有哪些处理手段？</a><br>
-<a href="./22讲如何管理服务配置？.html">22讲如何管理服务配置？</a><br>
-<a href="./23讲如何搭建微服务治理平台？.html">23讲如何搭建微服务治理平台？</a><br>
-<a href="./24讲微服务架构该如何落地？.html">24讲微服务架构该如何落地？</a><br>
-<a href="./25讲微服务为什么要容器化？.html">25讲微服务为什么要容器化？</a><br>
-<a href="./26讲微服务容器化运维：镜像仓库和资源调度.html">26讲微服务容器化运维：镜像仓库和资源调度</a><br>
-<a href="./27讲微服务容器化运维：容器调度和服务编排.html">27讲微服务容器化运维：容器调度和服务编排</a><br>
-<a href="./28讲微服务容器化运维：微博容器运维平台DCP.html">28讲微服务容器化运维：微博容器运维平台DCP</a><br>
-<a href="./29讲微服务如何实现DevOps？.html">29讲微服务如何实现DevOps？</a><br>
-<a href="./30讲如何做好微服务容量规划？.html">30讲如何做好微服务容量规划？</a><br>
-<a href="./31讲微服务多机房部署实践.html">31讲微服务多机房部署实践</a><br>
-<a href="./32讲微服务混合云部署实践.html">32讲微服务混合云部署实践</a><br>
-<a href="./33讲下一代微服务架构ServiceMesh.html">33讲下一代微服务架构ServiceMesh</a><br>
-<a href="./34讲Istio：ServiceMesh的代表产品.html">34讲Istio：ServiceMesh的代表产品</a><br>
-<a href="./35讲微博ServiceMesh实践之路（上）.html">35讲微博ServiceMesh实践之路（上）</a><br>
-<a href="./36讲微博ServiceMesh实践之路（下）.html">36讲微博ServiceMesh实践之路（下）</a><br>
-<a href="./开篇词讲微服务，从放弃到入门.html">开篇词讲微服务，从放弃到入门</a><br>
-<a href="./结束语讲微服务，从入门到精通.html">结束语讲微服务，从入门到精通</a><br>
-<a href="./阿忠伯的特别放送讲答疑解惑01.html">阿忠伯的特别放送讲答疑解惑01</a><br>
+    <div class="bg-animation">
+        <div class="bg-gradient1"></div>
+        <div class="bg-gradient2"></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-link">返回首页</a>
+            <h1>从0开始学微服务</h1>
+        </div>
+        <ul class="article-list">
+            <li><a href="./开篇词讲微服务，从放弃到入门.html" class="article-link">开篇词 | 微服务，从放弃到入门</a></li>
+            <li><a href="./01讲到底什么是微服务？.html" class="article-link">01 | 到底什么是微服务？</a></li>
+            <li><a href="./02讲从单体应用走向服务化.html" class="article-link">02 | 从单体应用走向服务化</a></li>
+            <li><a href="./03讲初探微服务架构.html" class="article-link">03 | 初探微服务架构</a></li>
+            <li><a href="./04讲如何发布和引用服务？.html" class="article-link">04 | 如何发布和引用服务？</a></li>
+            <li><a href="./05讲如何注册和发现服务？.html" class="article-link">05 | 如何注册和发现服务？</a></li>
+            <li><a href="./06讲如何实现RPC远程服务调用？.html" class="article-link">06 | 如何实现RPC远程服务调用？</a></li>
+            <li><a href="./07讲如何监控微服务调用？.html" class="article-link">07 | 如何监控微服务调用？</a></li>
+            <li><a href="./08讲如何追踪微服务调用？.html" class="article-link">08 | 如何追踪微服务调用？</a></li>
+            <li><a href="./09讲微服务治理的手段有哪些？.html" class="article-link">09 | 微服务治理的手段有哪些？</a></li>
+            <li><a href="./10讲Dubbo框架里的微服务组件.html" class="article-link">10 | Dubbo框架里的微服务组件</a></li>
+            <li><a href="./11讲服务发布和引用的实践.html" class="article-link">11 | 服务发布和引用的实践</a></li>
+            <li><a href="./12讲如何将注册中心落地？.html" class="article-link">12 | 如何将注册中心落地？</a></li>
+            <li><a href="./13讲开源服务注册中心如何选型？.html" class="article-link">13 | 开源服务注册中心如何选型？</a></li>
+            <li><a href="./14讲开源RPC框架如何选型？.html" class="article-link">14 | 开源RPC框架如何选型？</a></li>
+            <li><a href="./15讲如何搭建一个可靠的监控系统？.html" class="article-link">15 | 如何搭建一个可靠的监控系统？</a></li>
+            <li><a href="./16讲如何搭建一套适合你的服务追踪系统？.html" class="article-link">16 | 如何搭建一套适合你的服务追踪系统？</a></li>
+            <li><a href="./17讲如何识别服务节点是否存活？.html" class="article-link">17 | 如何识别服务节点是否存活？</a></li>
+            <li><a href="./18讲如何使用负载均衡算法？.html" class="article-link">18 | 如何使用负载均衡算法？</a></li>
+            <li><a href="./19讲如何使用服务路由？.html" class="article-link">19 | 如何使用服务路由？</a></li>
+            <li><a href="./20讲服务端出现故障时该如何应对？.html" class="article-link">20 | 服务端出现故障时该如何应对？</a></li>
+            <li><a href="./21讲服务调用失败时有哪些处理手段？.html" class="article-link">21 | 服务调用失败时有哪些处理手段？</a></li>
+            <li><a href="./22讲如何管理服务配置？.html" class="article-link">22 | 如何管理服务配置？</a></li>
+            <li><a href="./23讲如何搭建微服务治理平台？.html" class="article-link">23 | 如何搭建微服务治理平台？</a></li>
+            <li><a href="./24讲微服务架构该如何落地？.html" class="article-link">24 | 微服务架构该如何落地？</a></li>
+            <li><a href="./25讲微服务为什么要容器化？.html" class="article-link">25 | 微服务为什么要容器化？</a></li>
+            <li><a href="./26讲微服务容器化运维：镜像仓库和资源调度.html" class="article-link">26 | 微服务容器化运维：镜像仓库和资源调度</a></li>
+            <li><a href="./27讲微服务容器化运维：容器调度和服务编排.html" class="article-link">27 | 微服务容器化运维：容器调度和服务编排</a></li>
+            <li><a href="./28讲微服务容器化运维：微博容器运维平台DCP.html" class="article-link">28 | 微服务容器化运维：微博容器运维平台DCP</a></li>
+            <li><a href="./29讲微服务如何实现DevOps？.html" class="article-link">29 | 微服务如何实现DevOps？</a></li>
+            <li><a href="./30讲如何做好微服务容量规划？.html" class="article-link">30 | 如何做好微服务容量规划？</a></li>
+            <li><a href="./31讲微服务多机房部署实践.html" class="article-link">31 | 微服务多机房部署实践</a></li>
+            <li><a href="./32讲微服务混合云部署实践.html" class="article-link">32 | 微服务混合云部署实践</a></li>
+            <li><a href="./33讲下一代微服务架构ServiceMesh.html" class="article-link">33 | 下一代微服务架构ServiceMesh</a></li>
+            <li><a href="./34讲Istio：ServiceMesh的代表产品.html" class="article-link">34 | Istio：ServiceMesh的代表产品</a></li>
+            <li><a href="./35讲微博ServiceMesh实践之路（上）.html" class="article-link">35 | 微博ServiceMesh实践之路（上）</a></li>
+            <li><a href="./36讲微博ServiceMesh实践之路（下）.html" class="article-link">36 | 微博ServiceMesh实践之路（下）</a></li>
+            <li><a href="./结束语讲微服务，从入门到精通.html" class="article-link">结束语 | 微服务，从入门到精通</a></li>
+            <li><a href="./阿忠伯的特别放送讲答疑解惑01.html" class="article-link">阿忠伯的特别放送 | 答疑解惑01</a></li>
+        </ul>
+    </div>
 </body>
 </html>
 

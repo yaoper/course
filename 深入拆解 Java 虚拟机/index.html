@@ -1,51 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover" />
     <meta name="format-detection" content="telephone=no" />
     <title>深入拆解 Java 虚拟机</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #060921;
+            color: #fff;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00D9F5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #00F5A0;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(120deg, #00F5A0, #00D9F5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .article-link {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .article-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 217, 245, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bg-gradient1 {
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 245, 160, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 20s infinite alternate;
+        }
+
+        .bg-gradient2 {
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 217, 245, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 15s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 50px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .back-link {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            .header {
+                margin-bottom: 2rem;
+            }
+
+            .article-list {
+                grid-template-columns: 1fr;
+            }
+
+            .article-link {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<a href="./180716-开篇词 _ 为什么我们要学习Java虚拟机？.html">180716-开篇词 _ 为什么我们要学习Java虚拟机？</a><br>
-<a href="./180720-01 _ Java代码是怎么运行的？.html">180720-01 _ Java代码是怎么运行的？</a><br>
-<a href="./180723-02 _ Java的基本类型.html">180723-02 _ Java的基本类型</a><br>
-<a href="./180725-03 _ Java虚拟机是如何加载Java类的_.html">180725-03 _ Java虚拟机是如何加载Java类的_</a><br>
-<a href="./180727-04 _ JVM是如何执行方法调用的？（上）.html">180727-04 _ JVM是如何执行方法调用的？（上）</a><br>
-<a href="./180730-05 _ JVM是如何执行方法调用的？（下）.html">180730-05 _ JVM是如何执行方法调用的？（下）</a><br>
-<a href="./180801-06 _ JVM是如何处理异常的？.html">180801-06 _ JVM是如何处理异常的？</a><br>
-<a href="./180803-【工具篇】 常用工具介绍.html">180803-【工具篇】 常用工具介绍</a><br>
-<a href="./180806-07 _ JVM是如何实现反射的？.html">180806-07 _ JVM是如何实现反射的？</a><br>
-<a href="./180808-08 _ JVM是怎么实现invokedynamic的？（上）.html">180808-08 _ JVM是怎么实现invokedynamic的？（上）</a><br>
-<a href="./180810-09 _ JVM是怎么实现invokedynamic的？（下）.html">180810-09 _ JVM是怎么实现invokedynamic的？（下）</a><br>
-<a href="./180813-10 _ Java对象的内存布局.html">180813-10 _ Java对象的内存布局</a><br>
-<a href="./180815-11 _ 垃圾回收（上）.html">180815-11 _ 垃圾回收（上）</a><br>
-<a href="./180817-12 _ 垃圾回收（下）.html">180817-12 _ 垃圾回收（下）</a><br>
-<a href="./180820-13 _ Java内存模型.html">180820-13 _ Java内存模型</a><br>
-<a href="./180822-14 _ Java虚拟机是怎么实现synchronized的？.html">180822-14 _ Java虚拟机是怎么实现synchronized的？</a><br>
-<a href="./180824-15 _ Java语法糖与Java编译器.html">180824-15 _ Java语法糖与Java编译器</a><br>
-<a href="./180827-16 _ 即时编译（上）.html">180827-16 _ 即时编译（上）</a><br>
-<a href="./180829-17 _ 即时编译（下）.html">180829-17 _ 即时编译（下）</a><br>
-<a href="./180831-18 _ 即时编译器的中间表达形式.html">180831-18 _ 即时编译器的中间表达形式</a><br>
-<a href="./180903-19 _  Java字节码（基础篇）.html">180903-19 _  Java字节码（基础篇）</a><br>
-<a href="./180905-20 _ 方法内联（上）.html">180905-20 _ 方法内联（上）</a><br>
-<a href="./180907-21 _ 方法内联（下）.html">180907-21 _ 方法内联（下）</a><br>
-<a href="./180910-22 _ HotSpot虚拟机的intrinsic.html">180910-22 _ HotSpot虚拟机的intrinsic</a><br>
-<a href="./180912-23 _ 逃逸分析.html">180912-23 _ 逃逸分析</a><br>
-<a href="./180914-24 _ 字段访问相关优化.html">180914-24 _ 字段访问相关优化</a><br>
-<a href="./180917-25 _ 循环优化.html">180917-25 _ 循环优化</a><br>
-<a href="./180919-26 _ 向量化.html">180919-26 _ 向量化</a><br>
-<a href="./180921-27 _ 注解处理器.html">180921-27 _ 注解处理器</a><br>
-<a href="./180924-28 _ 基准测试框架JMH（上）.html">180924-28 _ 基准测试框架JMH（上）</a><br>
-<a href="./180926-29 _ 基准测试框架JMH（下）.html">180926-29 _ 基准测试框架JMH（下）</a><br>
-<a href="./180928-30 _ Java虚拟机的监控及诊断工具（命令行篇）.html">180928-30 _ Java虚拟机的监控及诊断工具（命令行篇）</a><br>
-<a href="./181001-31 _ Java虚拟机的监控及诊断工具（GUI篇）.html">181001-31 _ Java虚拟机的监控及诊断工具（GUI篇）</a><br>
-<a href="./181003-32 _ JNI的运行机制.html">181003-32 _ JNI的运行机制</a><br>
-<a href="./181005-33 _ Java Agent与字节码注入.html">181005-33 _ Java Agent与字节码注入</a><br>
-<a href="./181008-34 _ Graal：用Java编译Java.html">181008-34 _ Graal：用Java编译Java</a><br>
-<a href="./181010-35 _ Truffle：语言实现框架.html">181010-35 _ Truffle：语言实现框架</a><br>
-<a href="./181012-36 _ SubstrateVM：AOT编译框架.html">181012-36 _ SubstrateVM：AOT编译框架</a><br>
-<a href="./181015-尾声 _ 道阻且长，努力加餐.html">181015-尾声 _ 道阻且长，努力加餐</a><br>
+    <div class="bg-animation">
+        <div class="bg-gradient1"></div>
+        <div class="bg-gradient2"></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-link">返回首页</a>
+            <h1>深入拆解 Java 虚拟机</h1>
+        </div>
+        <ul class="article-list">
+            <li><a href="./180716-开篇词 _ 为什么我们要学习Java虚拟机？.html" class="article-link">开篇词 ｜ 为什么我们要学习Java虚拟机？</a></li>
+            <li><a href="./180720-01 _ Java代码是怎么运行的？.html" class="article-link">01 ｜ Java代码是怎么运行的？</a></li>
+            <li><a href="./180723-02 _ Java的基本类型.html" class="article-link">02 ｜ Java的基本类型</a></li>
+            <li><a href="./180725-03 _ Java虚拟机是如何加载Java类的_.html" class="article-link">03 ｜ Java虚拟机是如何加载Java类的_</a></li>
+            <li><a href="./180727-04 _ JVM是如何执行方法调用的？（上）.html" class="article-link">04 ｜ JVM是如何执行方法调用的？（上）</a></li>
+            <li><a href="./180730-05 _ JVM是如何执行方法调用的？（下）.html" class="article-link">05 ｜ JVM是如何执行方法调用的？（下）</a></li>
+            <li><a href="./180801-06 _ JVM是如何处理异常的？.html" class="article-link">06 ｜ JVM是如何处理异常的？</a></li>
+            <li><a href="./180803-【工具篇】 常用工具介绍.html" class="article-link">07 ｜ 【工具篇】 常用工具介绍</a></li>
+            <li><a href="./180806-07 _ JVM是如何实现反射的？.html" class="article-link">07 ｜ JVM是如何实现反射的？</a></li>
+            <li><a href="./180808-08 _ JVM是怎么实现invokedynamic的？（上）.html" class="article-link">08 ｜ JVM是怎么实现invokedynamic的？（上）</a></li>
+            <li><a href="./180810-09 _ JVM是怎么实现invokedynamic的？（下）.html" class="article-link">09 ｜ JVM是怎么实现invokedynamic的？（下）</a></li>
+            <li><a href="./180813-10 _ Java对象的内存布局.html" class="article-link">10 ｜ Java对象的内存布局</a></li>
+            <li><a href="./180815-11 _ 垃圾回收（上）.html" class="article-link">11 ｜ 垃圾回收（上）</a></li>
+            <li><a href="./180817-12 _ 垃圾回收（下）.html" class="article-link">12 ｜ 垃圾回收（下）</a></li>
+            <li><a href="./180820-13 _ Java内存模型.html" class="article-link">13 ｜ Java内存模型</a></li>
+            <li><a href="./180822-14 _ Java虚拟机是怎么实现synchronized的？.html" class="article-link">14 ｜ Java虚拟机是怎么实现synchronized的？</a></li>
+            <li><a href="./180824-15 _ Java语法糖与Java编译器.html" class="article-link">15 ｜ Java语法糖与Java编译器</a></li>
+            <li><a href="./180827-16 _ 即时编译（上）.html" class="article-link">16 ｜ 即时编译（上）</a></li>
+            <li><a href="./180829-17 _ 即时编译（下）.html" class="article-link">17 ｜ 即时编译（下）</a></li>
+            <li><a href="./180831-18 _ 即时编译器的中间表达形式.html" class="article-link">18 ｜ 即时编译器的中间表达形式</a></li>
+            <li><a href="./180903-19 _  Java字节码（基础篇）.html" class="article-link">19 ｜  Java字节码（基础篇）</a></li>
+            <li><a href="./180905-20 _ 方法内联（上）.html" class="article-link">20 ｜ 方法内联（上）</a></li>
+            <li><a href="./180907-21 _ 方法内联（下）.html" class="article-link">21 ｜ 方法内联（下）</a></li>
+            <li><a href="./180910-22 _ HotSpot虚拟机的intrinsic.html" class="article-link">22 ｜ HotSpot虚拟机的intrinsic</a></li>
+            <li><a href="./180912-23 _ 逃逸分析.html" class="article-link">23 ｜ 逃逸分析</a></li>
+            <li><a href="./180914-24 _ 字段访问相关优化.html" class="article-link">24 ｜ 字段访问相关优化</a></li>
+            <li><a href="./180917-25 _ 循环优化.html" class="article-link">25 ｜ 循环优化</a></li>
+            <li><a href="./180919-26 _ 向量化.html" class="article-link">26 ｜ 向量化</a></li>
+            <li><a href="./180921-27 _ 注解处理器.html" class="article-link">27 ｜ 注解处理器</a></li>
+            <li><a href="./180924-28 _ 基准测试框架JMH（上）.html" class="article-link">28 ｜ 基准测试框架JMH（上）</a></li>
+            <li><a href="./180926-29 _ 基准测试框架JMH（下）.html" class="article-link">29 ｜ 基准测试框架JMH（下）</a></li>
+            <li><a href="./180928-30 _ Java虚拟机的监控及诊断工具（命令行篇）.html" class="article-link">30 ｜ Java虚拟机的监控及诊断工具（命令行篇）</a></li>
+            <li><a href="./181001-31 _ Java虚拟机的监控及诊断工具（GUI篇）.html" class="article-link">31 ｜ Java虚拟机的监控及诊断工具（GUI篇）</a></li>
+            <li><a href="./181003-32 _ JNI的运行机制.html" class="article-link">32 ｜ JNI的运行机制</a></li>
+            <li><a href="./181005-33 _ Java Agent与字节码注入.html" class="article-link">33 ｜ Java Agent与字节码注入</a></li>
+            <li><a href="./181008-34 _ Graal：用Java编译Java.html" class="article-link">34 ｜ Graal：用Java编译Java</a></li>
+            <li><a href="./181010-35 _ Truffle：语言实现框架.html" class="article-link">35 ｜ Truffle：语言实现框架</a></li>
+            <li><a href="./181012-36 _ SubstrateVM：AOT编译框架.html" class="article-link">36 ｜ SubstrateVM：AOT编译框架</a></li>
+            <li><a href="./181015-尾声 _ 道阻且长，努力加餐.html" class="article-link">尾声 ｜ 道阻且长，努力加餐</a></li>
+        </ul>
+    </div>
 </body>
 </html>
 

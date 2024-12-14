@@ -1,71 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover" />
     <meta name="format-detection" content="telephone=no" />
     <title>从零开始学架构</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #060921;
+            color: #fff;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00D9F5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #00F5A0;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(120deg, #00F5A0, #00D9F5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .article-link {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .article-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 217, 245, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bg-gradient1 {
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 245, 160, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 20s infinite alternate;
+        }
+
+        .bg-gradient2 {
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 217, 245, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            animation: float 15s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 50px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .back-link {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            .header {
+                margin-bottom: 2rem;
+            }
+
+            .article-list {
+                grid-template-columns: 1fr;
+            }
+
+            .article-link {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<a href="./180425-开篇词 _ 照着做，你也能成为架构师！.html">180425-开篇词 _ 照着做，你也能成为架构师！</a><br>
-<a href="./180428-01 _ 架构到底是指什么？.html">180428-01 _ 架构到底是指什么？</a><br>
-<a href="./180501-02 _ 架构设计的历史背景.html">180501-02 _ 架构设计的历史背景</a><br>
-<a href="./180503-03 _ 架构设计的目的.html">180503-03 _ 架构设计的目的</a><br>
-<a href="./180505-04 _ 复杂度来源：高性能.html">180505-04 _ 复杂度来源：高性能</a><br>
-<a href="./180508-05 _ 复杂度来源：高可用.html">180508-05 _ 复杂度来源：高可用</a><br>
-<a href="./180510-06 _ 复杂度来源：可扩展性.html">180510-06 _ 复杂度来源：可扩展性</a><br>
-<a href="./180512-07 _ 复杂度来源：低成本、安全、规模.html">180512-07 _ 复杂度来源：低成本、安全、规模</a><br>
-<a href="./180515-08 _ 架构设计三原则.html">180515-08 _ 架构设计三原则</a><br>
-<a href="./180517-09 _ 架构设计原则案例.html">180517-09 _ 架构设计原则案例</a><br>
-<a href="./180518-架构专栏特别放送 _ “华仔，放学别走！”第1期.html">180518-架构专栏特别放送 _ “华仔，放学别走！”第1期</a><br>
-<a href="./180519-10 _ 架构设计流程：识别复杂度.html">180519-10 _ 架构设计流程：识别复杂度</a><br>
-<a href="./180522-11 _ 架构设计流程：设计备选方案.html">180522-11 _ 架构设计流程：设计备选方案</a><br>
-<a href="./180524-12 _ 架构设计流程：评估和选择备选方案.html">180524-12 _ 架构设计流程：评估和选择备选方案</a><br>
-<a href="./180526-13 _ 架构设计流程：详细方案设计.html">180526-13 _ 架构设计流程：详细方案设计</a><br>
-<a href="./180529-14 _ 高性能数据库集群：读写分离.html">180529-14 _ 高性能数据库集群：读写分离</a><br>
-<a href="./180531-15 _ 高性能数据库集群：分库分表.html">180531-15 _ 高性能数据库集群：分库分表</a><br>
-<a href="./180601-架构专栏特别放送 _ “华仔，放学别走！” 第2期.html">180601-架构专栏特别放送 _ “华仔，放学别走！” 第2期</a><br>
-<a href="./180602-16 _ 高性能NoSQL.html">180602-16 _ 高性能NoSQL</a><br>
-<a href="./180605-17 _ 高性能缓存架构.html">180605-17 _ 高性能缓存架构</a><br>
-<a href="./180607-18 _ 单服务器高性能模式：PPC与TPC.html">180607-18 _ 单服务器高性能模式：PPC与TPC</a><br>
-<a href="./180609-19 _ 单服务器高性能模式：Reactor与Proactor.html">180609-19 _ 单服务器高性能模式：Reactor与Proactor</a><br>
-<a href="./180612-20 _ 高性能负载均衡：分类及架构.html">180612-20 _ 高性能负载均衡：分类及架构</a><br>
-<a href="./180614-21 _ 高性能负载均衡：算法.html">180614-21 _ 高性能负载均衡：算法</a><br>
-<a href="./180616-22 _ 想成为架构师，你必须知道CAP理论.html">180616-22 _ 想成为架构师，你必须知道CAP理论</a><br>
-<a href="./180619-23 _ 想成为架构师，你必须掌握的CAP细节.html">180619-23 _ 想成为架构师，你必须掌握的CAP细节</a><br>
-<a href="./180621-24 _ FMEA方法，排除架构可用性隐患的利器.html">180621-24 _ FMEA方法，排除架构可用性隐患的利器</a><br>
-<a href="./180623-25 _ 高可用存储架构：双机架构.html">180623-25 _ 高可用存储架构：双机架构</a><br>
-<a href="./180626-26 _ 高可用存储架构：集群和分区.html">180626-26 _ 高可用存储架构：集群和分区</a><br>
-<a href="./180628-27 _ 如何设计计算高可用架构？.html">180628-27 _ 如何设计计算高可用架构？</a><br>
-<a href="./180629-如何高效地学习开源项目 _ “华仔，放学别走！” 第3期.html">180629-如何高效地学习开源项目 _ “华仔，放学别走！” 第3期</a><br>
-<a href="./180630-28 _ 业务高可用的保障：异地多活架构.html">180630-28 _ 业务高可用的保障：异地多活架构</a><br>
-<a href="./180703-29 _ 异地多活设计4大技巧.html">180703-29 _ 异地多活设计4大技巧</a><br>
-<a href="./180705-30 _ 异地多活设计4步走.html">180705-30 _ 异地多活设计4步走</a><br>
-<a href="./180707-31 _ 如何应对接口级的故障？.html">180707-31 _ 如何应对接口级的故障？</a><br>
-<a href="./180710-32 _ 可扩展架构的基本思想和模式.html">180710-32 _ 可扩展架构的基本思想和模式</a><br>
-<a href="./180712-33 _ 传统的可扩展架构模式：分层架构和SOA.html">180712-33 _ 传统的可扩展架构模式：分层架构和SOA</a><br>
-<a href="./180714-34 _ 深入理解微服务架构：银弹 or 焦油坑？.html">180714-34 _ 深入理解微服务架构：银弹 or 焦油坑？</a><br>
-<a href="./180717-35 _ 微服务架构最佳实践 - 方法篇.html">180717-35 _ 微服务架构最佳实践 - 方法篇</a><br>
-<a href="./180719-36 _ 微服务架构最佳实践 - 基础设施篇.html">180719-36 _ 微服务架构最佳实践 - 基础设施篇</a><br>
-<a href="./180721-37 _ 微内核架构详解.html">180721-37 _ 微内核架构详解</a><br>
-<a href="./180724-38 _ 架构师应该如何判断技术演进的方向？.html">180724-38 _ 架构师应该如何判断技术演进的方向？</a><br>
-<a href="./180726-39 _ 互联网技术演进的模式.html">180726-39 _ 互联网技术演进的模式</a><br>
-<a href="./180728-40 _ 互联网架构模板：“存储层”技术.html">180728-40 _ 互联网架构模板：“存储层”技术</a><br>
-<a href="./180731-41 _ 互联网架构模板：“开发层”和“服务层”技术.html">180731-41 _ 互联网架构模板：“开发层”和“服务层”技术</a><br>
-<a href="./180802-42 _ 互联网架构模板：“网络层”技术.html">180802-42 _ 互联网架构模板：“网络层”技术</a><br>
-<a href="./180804-43 _ 互联网架构模板：“用户层”和“业务层”技术.html">180804-43 _ 互联网架构模板：“用户层”和“业务层”技术</a><br>
-<a href="./180807-44 _ 互联网架构模板：“平台”技术.html">180807-44 _ 互联网架构模板：“平台”技术</a><br>
-<a href="./180809-45 _ 架构重构内功心法第一式：有的放矢.html">180809-45 _ 架构重构内功心法第一式：有的放矢</a><br>
-<a href="./180811-46 _ 架构重构内功心法第二式：合纵连横.html">180811-46 _ 架构重构内功心法第二式：合纵连横</a><br>
-<a href="./180814-47 _ 架构重构内功心法第三式：运筹帷幄.html">180814-47 _ 架构重构内功心法第三式：运筹帷幄</a><br>
-<a href="./180816-48 _ 再谈开源项目：如何选择、使用以及二次开发？.html">180816-48 _ 再谈开源项目：如何选择、使用以及二次开发？</a><br>
-<a href="./180818-49 _ 谈谈App架构的演进.html">180818-49 _ 谈谈App架构的演进</a><br>
-<a href="./180821-50 _ 架构实战：架构设计文档模板.html">180821-50 _ 架构实战：架构设计文档模板</a><br>
-<a href="./180823-架构师成长之路 _ “华仔，放学别走！” 第4期.html">180823-架构师成长之路 _ “华仔，放学别走！” 第4期</a><br>
-<a href="./180825-结束语 _ 坚持，成就你的技术梦想.html">180825-结束语 _ 坚持，成就你的技术梦想</a><br>
-<a href="./180913-架构师必读书单 _ “华仔，放学别走！” 第5期.html">180913-架构师必读书单 _ “华仔，放学别走！” 第5期</a><br>
-<a href="./180927-新书首发 _ 《从零开始学架构》.html">180927-新书首发 _ 《从零开始学架构》</a><br>
-<a href="./181010-致「从0开始学架构」专栏订阅用户.html">181010-致「从0开始学架构」专栏订阅用户</a><br>
+    <div class="bg-animation">
+        <div class="bg-gradient1"></div>
+        <div class="bg-gradient2"></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <a href="../index.html" class="back-link">返回首页</a>
+            <h1>从零开始学架构</h1>
+        </div>
+        <ul class="article-list">
+            <li><a href="./180425-开篇词 _ 照着做，你也能成为架构师！.html" class="article-link">开篇词 | 照着做，你也能成为架构师！</a></li>
+            <li><a href="./180428-01 _ 架构到底是指什么？.html" class="article-link">01 | 架构到底是指什么？</a></li>
+            <li><a href="./180501-02 _ 架构设计的历史背景.html" class="article-link">02 | 架构设计的历史背景</a></li>
+            <li><a href="./180503-03 _ 架构设计的目的.html" class="article-link">03 | 架构设计的目的</a></li>
+            <li><a href="./180505-04 _ 复杂度来源：高性能.html" class="article-link">04 | 复杂度来源：高性能</a></li>
+            <li><a href="./180508-05 _ 复杂度来源：高可用.html" class="article-link">05 | 复杂度来源：高可用</a></li>
+            <li><a href="./180510-06 _ 复杂度来源：可扩展性.html" class="article-link">06 | 复杂度来源：可扩展性</a></li>
+            <li><a href="./180512-07 _ 复杂度来源：低成本、安全、规模.html" class="article-link">07 | 复杂度来源：低成本、安全、规模</a></li>
+            <li><a href="./180515-08 _ 架构设计三原则.html" class="article-link">08 | 架构设计三原则</a></li>
+            <li><a href="./180517-09 _ 架构设计原则案例.html" class="article-link">09 | 架构设计原则案例</a></li>
+            <li><a href="./180518-架构专栏特别放送 _ “华仔，放学别走！”第1期.html" class="article-link">架构专栏特别放送 | “华仔，放学别走！”第1期</a></li>
+            <li><a href="./180519-10 _ 架构设计流程：识别复杂度.html" class="article-link">10 | 架构设计流程：识别复杂度</a></li>
+            <li><a href="./180522-11 _ 架构设计流程：设计备选方案.html" class="article-link">11 | 架构设计流程：设计备选方案</a></li>
+            <li><a href="./180524-12 _ 架构设计流程：评估和选择备选方案.html" class="article-link">12 | 架构设计流程：评估和选择备选方案</a></li>
+            <li><a href="./180526-13 _ 架构设计流程：详细方案设计.html" class="article-link">13 | 架构设计流程：详细方案设计</a></li>
+            <li><a href="./180529-14 _ 高性能数据库集群：读写分离.html" class="article-link">14 | 高性能数据库集群：读写分离</a></li>
+            <li><a href="./180531-15 _ 高性能数据库集群：分库分表.html" class="article-link">15 | 高性能数据库集群：分库分表</a></li>
+            <li><a href="./180601-架构专栏特别放送 _ “华仔，放学别走！” 第2期.html" class="article-link">架构专栏特别放送 | “华仔，放学别走！” 第2期</a></li>
+            <li><a href="./180602-16 _ 高性能NoSQL.html" class="article-link">16 | 高性能NoSQL</a></li>
+            <li><a href="./180605-17 _ 高性能缓存架构.html" class="article-link">17 | 高性能缓存架构</a></li>
+            <li><a href="./180607-18 _ 单服务器高性能模式：PPC与TPC.html" class="article-link">18 | 单服务器高性能模式：PPC与TPC</a></li>
+            <li><a href="./180609-19 _ 单服务器高性能模式：Reactor与Proactor.html" class="article-link">19 | 单服务器高性能模式：Reactor与Proactor</a></li>  
+            <li><a href="./180612-20 _ 高性能负载均衡：分类及架构.html" class="article-link">20 | 高性能负载均衡：分类及架构</a></li>
+            <li><a href="./180614-21 _ 高性能负载均衡：算法.html" class="article-link">21 | 高性能负载均衡：算法</a></li>
+            <li><a href="./180616-22 _ 想成为架构师，你必须知道CAP理论.html" class="article-link">22 | 想成为架构师，你必须知道CAP理论</a></li>
+            <li><a href="./180619-23 _ 想成为架构师，你必须掌握的CAP细节.html" class="article-link">23 | 想成为架构师，你必须掌握的CAP细节</a></li>
+            <li><a href="./180621-24 _ FMEA方法，排除架构可用性隐患的利器.html" class="article-link">24 | FMEA方法，排除架构可用性隐患的利器</a></li>
+            <li><a href="./180623-25 _ 高可用存储架构：双机架构.html" class="article-link">25 | 高可用存储架构：双机架构</a></li>
+            <li><a href="./180626-26 _ 高可用存储架构：集群和分区.html" class="article-link">26 | 高可用存储架构：集群和分区</a></li>
+            <li><a href="./180628-27 _ 如何设计计算高可用架构？.html" class="article-link">27 | 如何设计计算高可用架构？</a></li>
+            <li><a href="./180629-如何高效地学习开源项目 _ “华仔，放学别走！” 第3期.html" class="article-link">架构专栏特别放送 | “华仔，放学别走！” 第3期</a></li>
+            <li><a href="./180630-28 _ 业务高可用的保障：异地多活架构.html" class="article-link">28 | 业务高可用的保障：异地多活架构</a></li>
+            <li><a href="./180703-29 _ 异地多活设计4大技巧.html" class="article-link">29 | 异地多活设计4大技巧</a></li>
+            <li><a href="./180705-30 _ 异地多活设计4步走.html" class="article-link">30 | 异地多活设计4步走</a></li>
+            <li><a href="./180707-31 _ 如何应对接口级的故障？.html" class="article-link">31 | 如何应对接口级的故障？</a></li>
+            <li><a href="./180710-32 _ 可扩展架构的基本思想和模式.html" class="article-link">32 | 可扩展架构的基本思想和模式</a></li>
+            <li><a href="./180712-33 _ 传统的可扩展架构模式：分层架构和SOA.html" class="article-link">33 | 传统的可扩展架构模式：分层架构和SOA</a></li>
+            <li><a href="./180714-34 _ 深入理解微服务架构：银弹 or 焦油坑？.html" class="article-link">34 | 深入理解微服务架构：银弹 or 焦油坑？</a></li>
+            <li><a href="./180717-35 _ 微服务架构最佳实践 - 方法篇.html" class="article-link">35 | 微服务架构最佳实践 - 方法篇</a></li>
+            <li><a href="./180719-36 _ 微服务架构最佳实践 - 基础设施篇.html" class="article-link">36 | 微服务架构最佳实践 - 基础设施篇</a></li>
+            <li><a href="./180721-37 _ 微内核架构详解.html" class="article-link">37 | 微内核架构详解</a></li>
+            <li><a href="./180724-38 _ 架构师应该如何判断技术演进的方向？.html" class="article-link">38 | 架构师应该如何判断技术演进的方向？</a></li>
+            <li><a href="./180726-39 _ 互联网技术演进的模式.html" class="article-link">39 | 互联网技术演进的模式</a></li>
+            <li><a href="./180728-40 _ 互联网架构模板：“存储层”技术.html" class="article-link">40 | 互联网架构模板：“存储层”技术</a></li>
+            <li><a href="./180731-41 _ 互联网架构模板：“开发层”和“服务层”技术.html" class="article-link">41 | 互联网架构模板：“开发层”和“服务层”技术</a></li>
+            <li><a href="./180802-42 _ 互联网架构模板：“网络层”技术.html" class="article-link">42 | 互联网架构模板：“网络层”技术</a></li>
+            <li><a href="./180804-43 _ 互联网架构模板：“用户层”和“业务层”技术.html" class="article-link">43 | 互联网架构模板：“用户层”和“业务层”技术</a></li>
+            <li><a href="./180807-44 _ 互联网架构模板：“平台”技术.html" class="article-link">44 | 互联网架构模板：“平台”技术</a></li>
+            <li><a href="./180809-45 _ 架构重构内功心法第一式：有的放矢.html" class="article-link">45 | 架构重构内功心法第一式：有的放矢</a></li>
+            <li><a href="./180811-46 _ 架构重构内功心法第二式：合纵连横.html" class="article-link">46 | 架构重构内功心法第二式：合纵连横</a></li>
+            <li><a href="./180814-47 _ 架构重构内功心法第三式：运筹帷幄.html" class="article-link">47 | 架构重构内功心法第三式：运筹帷幄</a></li>
+            <li><a href="./180816-48 _ 再谈开源项目：如何选择、使用以及二次开发？.html" class="article-link">48 | 再谈开源项目：如何选择、使用以及二次开发？</a></li>
+            <li><a href="./180818-49 _ 谈谈App架构的演进.html" class="article-link">49 | 谈谈App架构的演进</a></li>
+            <li><a href="./180821-50 _ 架构实战：架构设计文档模板.html" class="article-link">50 | 架构实战：架构设计文档模板</a></li>
+            <li><a href="./180823-架构师成长之路 _ “华仔，放学别走！” 第4期.html" class="article-link">架构专栏特别放送 | “华仔，放学别走！” 第4期</a></li>
+            <li><a href="./180825-结束语 _ 坚持，成就你的技术梦想.html" class="article-link">结束语 | 坚持，成就你的技术梦想</a></li>
+            <li><a href="./180913-架构师必读书单 _ “华仔，放学别走！” 第5期.html" class="article-link">架构专栏特别放送 | “华仔，放学别走！” 第5期</a></li>
+            <li><a href="./180927-新书首发 _ 《从零开始学架构》.html" class="article-link">新书首发 | 《从零开始学架构》</a></li>
+            <li><a href="./181010-致「从0开始学架构」专栏订阅用户.html" class="article-link">致「从0开始学架构」专栏订阅用户</a></li>
+        </ul>
+    </div>
 </body>
 </html>
 
